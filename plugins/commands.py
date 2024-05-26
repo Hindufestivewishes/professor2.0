@@ -115,9 +115,8 @@ async def start(client, message):
                 msg = await client.send_cached_media(chat_id=message.from_user.id, file_id=msg.get("file_id"), caption=f_caption, protect_content=msg.get('protect', False))
                 filesarr.append(msg)
                 k = await client.send_message(chat_id = message.from_user.id, text=f"<b><u>❗️❗️ATTENTION❗️️❗️</u></b>\n\nThis Movie Files/Videos will be deleted in <b><u>5 mins</u> 🫥 <i></b>(Due to Copyright Issues)</i>.\n\n<b><i>Please forward this ALL Files/Videos to your Saved Messages and Start Download there</i></b>")
-                await asyncio.sleep(300)
-                for x in filesarr:
-                    await x.delete()
+                await asyncio.sleep(120)
+                    await msg.delete()
                 await k.edit_text("<b>Your Movie has been deleted 🚮 successfully to prevent copyright issue , if  you want the movie again then search again.</b>")                
             
             except Exception as e:
@@ -183,9 +182,8 @@ async def start(client, message):
             size=get_size(file.file_size)
             f_caption = f"<code>{title}</code>"
             k = await client.send_message(chat_id = message.from_user.id, text=f"<b><u>❗️❗️ATTENTION❗️️❗️</u></b>\n\nThis Movie Files/Videos will be deleted in <b><u>5 mins</u> 🫥 <i></b>(Due to Copyright Issues)</i>.\n\n<b><i>Please forward this ALL Files/Videos to your Saved Messages and Start Download there</i></b>")
-            await asyncio.sleep(300)
-            for x in filesarr:
-                await x.delete()
+            await asyncio.sleep(120)
+                await msg.delete()
             await k.edit_text("<b>Your Movie has been deleted 🚮 successfully to prevent copyright issue , if  you want the movie again then search again.</b>")
             return
             if CUSTOM_FILE_CAPTION:
@@ -211,9 +209,8 @@ async def start(client, message):
     msg = await client.send_cached_media(chat_id=message.from_user.id, file_id=file_id, caption=f_caption, protect_content=True if pre == 'filep' else False,)
     filesarr.append(msg)
     k = await client.send_message(chat_id = message.from_user.id, text=f"<b><u>❗️❗️ATTENTION❗️️❗️</u></b>\n\nThis Movie Files/Videos will be deleted in <b><u>5 mins</u> 🫥 <i></b>(Due to Copyright Issues)</i>.\n\n<b><i>Please forward this ALL Files/Videos to your Saved Messages and Start Download there</i></b>")
-    await asyncio.sleep(300)
-    for x in filesarr:
-        await x.delete()
+    await asyncio.sleep(120)
+        await msg.delete()
     await k.edit_text("<b>Your Movie has been deleted 🚮 successfully to prevent copyright issue , if  you want the movie again then search again.</b>")
     
                     
