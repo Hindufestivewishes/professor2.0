@@ -250,7 +250,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
         await query.edit_message_media(InputMediaPhoto(random.choice(PICS), script.HELP_TXT.format(query.from_user.mention), enums.ParseMode.HTML), reply_markup=InlineKeyboardMarkup(buttons))     
         
     elif query.data == "about":
-        await bot.send_message(chat_id=chat_id, text='Hello from your bot!')
+        await query.send_message(chat_id=chat_id, text='Hello from your bot!')
         
     elif query.data == "source":
         buttons = [[
