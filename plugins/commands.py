@@ -35,11 +35,8 @@ async def start(client, message):
         buttons = [[
             InlineKeyboardButton("😎 Share Our Bot 😎", url=f"https://t.me/share/url?url=t.me/{temp.U_NAME}")
             ],[
-            InlineKeyboardButton("Sᴇᴀʀᴄʜ 🔎", switch_inline_query_current_chat=''), 
-            InlineKeyboardButton("Cʜᴀɴɴᴇʟ 🔈", url="https://t.me/iPopkornBot_ipop_bot")
-            ],[      
-            InlineKeyboardButton("Hᴇʟᴩ 🕸️", callback_data="help"),
-            InlineKeyboardButton("Aʙᴏᴜᴛ ✨", callback_data="about")
+            InlineKeyboardButton("Hᴇʟᴩ 🕸️", callback_data="about"), 
+            InlineKeyboardButton("Update Cʜᴀɴɴᴇʟ 🔈", url="https://t.me/iPopkornBot_ipop_bot")
         ]]
         await message.reply_photo(photo=random.choice(PICS), caption=START_MESSAGE.format(user=message.from_user.mention, bot=client.mention), reply_markup=InlineKeyboardMarkup(buttons), parse_mode=enums.ParseMode.HTML)
         
@@ -68,11 +65,8 @@ async def start(client, message):
         buttons = [[
             InlineKeyboardButton("😎 Share Our Bot 😎", url=f"https://t.me/share/url?url=t.me/{temp.U_NAME}")
             ],[
-            InlineKeyboardButton("Sᴇᴀʀᴄʜ 🔎", switch_inline_query_current_chat=''), 
-            InlineKeyboardButton("Cʜᴀɴɴᴇʟ 🔈", url="https://t.me/iPopkornBot_ipop_bot")
-            ],[      
-            InlineKeyboardButton("Hᴇʟᴩ 🕸️", callback_data="help"),
-            InlineKeyboardButton("Aʙᴏᴜᴛ ✨", callback_data="about")
+            InlineKeyboardButton("Hᴇʟᴩ 🕸️", callback_data="about"), 
+            InlineKeyboardButton("Update Cʜᴀɴɴᴇʟ 🔈", url="https://t.me/iPopkornBot_ipop_bot")
         ]]
         await message.reply_photo(photo=random.choice(PICS), caption=START_MESSAGE.format(user=message.from_user.mention, bot=client.mention), reply_markup=InlineKeyboardMarkup(buttons), parse_mode=enums.ParseMode.HTML)
         
