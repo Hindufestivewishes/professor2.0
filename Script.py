@@ -1,5 +1,5 @@
 class script(object):  
-    START_TXT = """<blockquote>Hey 👋 {user}, ᴍʏ ɴᴀᴍᴇ <a href=https://t.me/{bot}>{bot}</a></blockquote>
+    START_TXT = """<blockquote>Hey 👋 {user}, ᴍʏ ɴᴀᴍᴇ {bot}</blockquote>
     
 <b>🍿 Wᴇʟᴄᴏᴍᴇ Tᴏ Tʜᴇ Wᴏʀʟᴅ's Cᴏᴏʟᴇsᴛ Sᴇᴀʀᴄʜ Eɴɢɪɴᴇ!
 
