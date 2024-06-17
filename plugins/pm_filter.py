@@ -98,7 +98,7 @@ async def pm_spoll_tester(bot, query):
         k = (movie, files, offset, total_results)
         await pm_AutoFilter(bot, query, k)
     else:
-        k = await query.message.edit("This Movie Not Found In Database. If this movie has been released recently then please try after some time. If it is old movie then I'm definitely sure you can find your movie on our 2nd bot check out now - <a href='https://t.me/Dev_autof_bot'>IpapkornFbot</a>")
+        k = await query.message.edit("This Movie Not Found In Database. If this movie has been released recently then please try after some time. If it is old movie then I'm definitely sure you can find your movie on our 2nd bot check out now - <a href='https://t.me/Dev_autof_bot'><b>IPapkornFbot</b></a>", disable_web_page_preview=True)
         await asyncio.sleep(30)
         await k.delete()
 
