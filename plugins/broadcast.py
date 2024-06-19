@@ -19,7 +19,7 @@ async def broadcast(bot, message):
     deleted = 0
     failed =0
     success = 0
-    async for user in users:
+    for user in users:
         pti, sh = await broadcast_messages(int(user['id']), b_msg)
         if pti:
             success += 1
@@ -49,7 +49,7 @@ async def remove_junkuser__db(bot, message):
     deleted = 0
     failed = 0
     done = 0
-    async for user in users:
+    for user in users:
         pti, sh = await clear_junk(int(user['id']), b_msg)
         if pti == False:
             if sh == "Blocked":
@@ -77,7 +77,7 @@ async def broadcast_group(bot, message):
     failed = ""
     success = 0
     deleted = 0
-    async for group in groups:
+    for group in groups:
         pti, sh, ex = await broadcast_messages_group(int(group['id']), b_msg)
         if pti == True:
             if sh == "Succes":
@@ -114,7 +114,7 @@ async def junk_clear_group(bot, message):
     done = 0
     failed = ""
     deleted = 0
-    async for group in groups:
+    for group in groups:
         pti, sh, ex = await junk_group(int(group['id']), b_msg)        
         if pti == False:
             if sh == "deleted":
