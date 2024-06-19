@@ -33,16 +33,12 @@ async def start(client, message):
         await client.send_message(LOG_CHANNEL, script.LOG_TEXT_P.format(message.from_user.id, message.from_user.mention, message.from_user.username, temp.U_NAME))
     if len(message.command) != 2:
         buttons = [[
-            InlineKeyboardButton("➕️ Aᴅᴅ Mᴇ Tᴏ Yᴏᴜʀ Cʜᴀᴛ ➕", url=f"http://t.me/{temp.U_NAME}?startgroup=true")
+            InlineKeyboardButton("Share with your friends", url=f"https://t.me/share/url?url=http://t.me/{temp.U_NAME}")
             ],[
-            InlineKeyboardButton("Sᴇᴀʀᴄʜ 🔎", switch_inline_query_current_chat=''), 
-            InlineKeyboardButton("Cʜᴀɴɴᴇʟ 🔈", url="https://t.me/mkn_bots_updates")
-            ],[      
-            InlineKeyboardButton("Hᴇʟᴩ 🕸️", callback_data="help"),
+            InlineKeyboardButton("Cʜᴀɴɴᴇʟ 🔈", url="https://t.me/iPopkornBot_ipop_bot")
+            ],[
             InlineKeyboardButton("Aʙᴏᴜᴛ ✨", callback_data="about")
         ]]
-        m = await message.reply_sticker("CAACAgUAAxkBAAEBvlVk7YKnYxIHVnKW2PUwoibIR2ygGAACBAADwSQxMYnlHW4Ls8gQHgQ") 
-        await asyncio.sleep(2)
         await message.reply_photo(photo=random.choice(PICS), caption=START_MESSAGE.format(user=message.from_user.mention, bot=client.mention), reply_markup=InlineKeyboardMarkup(buttons), parse_mode=enums.ParseMode.HTML)
         return await m.delete()
         
@@ -69,16 +65,12 @@ async def start(client, message):
         
     if len(message.command) == 2 and message.command[1] in ["subscribe", "error", "okay", "help"]:
         buttons = [[
-            InlineKeyboardButton("➕️ Aᴅᴅ Mᴇ Tᴏ Yᴏᴜʀ Cʜᴀᴛ ➕", url=f"http://t.me/{temp.U_NAME}?startgroup=true")
-            ],[
-            InlineKeyboardButton("Sᴇᴀʀᴄʜ 🔎", switch_inline_query_current_chat=''), 
-            InlineKeyboardButton("Cʜᴀɴɴᴇʟ 🔈", url="https://t.me/mkn_bots_updates")
+            InlineKeyboardButton("Share with your Friends", url=f"https://t.me/share/url?url=http://t.me/{temp.U_NAME}")
+            ],[ 
+            InlineKeyboardButton("Cʜᴀɴɴᴇʟ 🔈", url="https://t.me/iPopkornBot_ipop_bot")
             ],[      
-            InlineKeyboardButton("Hᴇʟᴩ 🕸️", callback_data="help"),
             InlineKeyboardButton("Aʙᴏᴜᴛ ✨", callback_data="about")
         ]]
-        m = await message.reply_sticker("CAACAgUAAxkBAAEBvlVk7YKnYxIHVnKW2PUwoibIR2ygGAACBAADwSQxMYnlHW4Ls8gQHgQ")
-        await asyncio.sleep(2)
         await message.reply_photo(photo=random.choice(PICS), caption=START_MESSAGE.format(user=message.from_user.mention, bot=client.mention), reply_markup=InlineKeyboardMarkup(buttons), parse_mode=enums.ParseMode.HTML)
         return await m.delete()
         
@@ -116,10 +108,14 @@ async def start(client, message):
             if f_caption is None:
                 f_caption = f"{title}"
             try:
-                await client.send_cached_media(chat_id=message.from_user.id, file_id=msg.get("file_id"), caption=f_caption, protect_content=msg.get('protect', False))
+                msg = await client.send_cached_media(chat_id=message.from_user.id, file_id=msg.get("file_id"), caption=f_caption, protect_content=msg.get('protect', False))
+                await asyncio.sleep(300)   
+                await msg.delete()
             except FloodWait as e:
                 await asyncio.sleep(e.value)
                 await client.send_cached_media(chat_id=message.from_user.id, file_id=msg.get("file_id"), caption=f_caption, protect_content=msg.get('protect', False))
+                await asyncio.sleep(300)   
+                await msg.delete()
             except Exception as e:
                 logger.warning(e, exc_info=True)
                 continue
@@ -186,6 +182,8 @@ async def start(client, message):
                 try: f_caption=CUSTOM_FILE_CAPTION.format(mention=message.from_user.mention, file_name= '' if title is None else title, file_size='' if size is None else size, file_caption='')
                 except: return
             return await msg.edit_caption(f_caption)
+            await asyncio.sleep(300)   
+            await msg.delete()
         except: pass
         return await message.reply('NO SUCH FILE EXIST...')
         
@@ -201,8 +199,9 @@ async def start(client, message):
             f_caption=f_caption
     if f_caption is None:
         f_caption = f"{files.file_name}"
-    await client.send_cached_media(chat_id=message.from_user.id, file_id=file_id, caption=f_caption, protect_content=True if pre == 'filep' else False,)
-                    
+    msg = await client.send_cached_media(chat_id=message.from_user.id, file_id=file_id, caption=f_caption, protect_content=True if pre == 'filep' else False,)
+    await asyncio.sleep(300)   
+    await msg.delete()
 
 
 @Client.on_message(filters.command('channel') & filters.user(ADMINS))
